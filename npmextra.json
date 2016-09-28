@@ -1,0 +1,7 @@
+{
+    "npmts": {
+        "testTs": {
+            "./test/*.ts": "./test/"
+        }
+    }
+}

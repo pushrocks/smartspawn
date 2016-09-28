@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "smart subprocess handling",
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "test": "(npmts)"
   },
@@ -21,5 +22,10 @@
     "beautylog": "^5.0.23",
     "lodash": "^4.16.2",
     "typings-global": "^1.0.14"
+  },
+  "devDependencies": {
+    "@types/should": "^8.1.30",
+    "should": "^11.1.0",
+    "typings-test": "^1.0.3"
   }
 }
