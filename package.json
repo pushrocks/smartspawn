@@ -1,0 +1,25 @@
+{
+  "name": "smartipc",
+  "version": "1.0.0",
+  "description": "smart subprocess handling",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "(npmts)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/pushrocks/smartipc.git"
+  },
+  "author": "Lossless GmbH",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/pushrocks/smartipc/issues"
+  },
+  "homepage": "https://gitlab.com/pushrocks/smartipc#README",
+  "dependencies": {
+    "@types/lodash": "^4.14.36",
+    "beautylog": "^5.0.23",
+    "lodash": "^4.16.2",
+    "typings-global": "^1.0.14"
+  }
+}
