@@ -48,7 +48,7 @@ myIpcServer.call('mySubProcessNameAlias','myAwesomeFunction',someData).then(some
 ```
 
 Client:
-```
+```typescript
 import { Ipcclient } from './smartipc'
 import * as q from 'q'
 
@@ -64,3 +64,5 @@ let myAwesomeFunction = (dataArg) => {
 
 localIpc.register([myAwesomeFunction])
 ```
+
+[![npm](https://push.rocks/assets/repo-header.svg)](https://push.rocks)
