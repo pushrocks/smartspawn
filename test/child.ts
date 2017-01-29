@@ -1,3 +1,5 @@
-import * as smartipc from '../dist/index'
-
-let localChild = new smartipc.IpcChild({})
+import 'typings-global'
+import 'smartq'
+module.exports = (input, done) => {
+    done('hi')
+}

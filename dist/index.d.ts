@@ -1,2 +1,2 @@
-export * from './smartipc.classes.ipcmaster';
-export * from './smartipc.classes.ipcchild';
+export * from './smartipc.classes.thread';
+export * from './smartipc.classes.threadfunction';

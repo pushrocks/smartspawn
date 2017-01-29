@@ -1,4 +1,4 @@
 import 'typings-global';
-export import beautylog = require('beautylog');
-export import lodash = require('lodash');
-export import childProcess = require('child_process');
+declare let threads: any;
+import * as smartq from 'smartq';
+export { smartq, threads };

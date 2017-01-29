@@ -1,18 +1,15 @@
+import 'typings-global'
 import * as plugins from './smartipc.plugins'
 import * as q from 'smartq'
 
-export let setWorkerBasePath = (basePathArg: string) => {
-    plugins.threads.config.set({
-        basepath: {
-            node: basePathArg
-        }
-    })
+export interface IThreadFunction {
+    (input, done): void
 }
 
-export class Thread {
+export class ThreadFunction {
     thread
-    constructor(filePathArg: string) {
-        this.thread = plugins.threads.spawn(filePathArg)
+    constructor(functionArg: IThreadFunction) {
+        this.thread = plugins.threads.spawn(functionArg)
     }
 
     /**
