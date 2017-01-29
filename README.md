@@ -23,46 +23,21 @@ You can transparently call functions and expect returned data using promises.
 
 ## Usage
 
-Server:
-```typescript
-import {Ipcserver} from 'smartipc'
-import * as q from 'q'
+**Master.ts:**
 
-let myIpcserver = new Ipcserver({
-    appspace: 'mymodule'
+```javascript
+import * as smartipc from 'smartipc'
+smartipc.setBasePathArg(__dirname) // if you want to avoid typings out full paths every time
+
+let myThread = new smartipc.Thread('worker')
+myThread.send('someMessageOrObject').then(messageResponse => {
+    console.log(messageResponse)
 })
-
-// The subprocess js file cannot have any cli arguments
-// since this mechanism is used by IpcServer to setup the connection
-myIpcServer.spawnProcess('./myFile','mySubProcessNameAlias') // nameAlias identifies the subprocess and will prefix any logs from child Process
-
-let someData = {
-    key1: 'value1',
-    key2: 'value2'
-}
-
-myIpcServer.call('mySubProcessNameAlias','myAwesomeFunction',someData).then(someAnswerData => {
-    console.log(someAnswerData.key1)
-})
-
 ```
 
-Client:
-```typescript
-import { Ipcclient } from './smartipc'
-import * as q from 'q'
+**worker.ts**
 
-let localIpc = new Ipcclient() // gets its connection information automatically using CLI args internally
+```javascript
 
-let myAwesomeFunction = (dataArg) => {
-    let done = plugins.q.defer()
-    console.log('awesome') // this will log transparently in the same console stream as the host process
-    let someAnswerData = {key1: 'this is an answer'}
-    done.resolve(someAnswerData)
-    return done.promise
-}
-
-localIpc.register([myAwesomeFunction])
 ```
-
 [![npm](https://push.rocks/assets/repo-header.svg)](https://push.rocks)
