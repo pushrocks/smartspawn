@@ -1,5 +1,5 @@
 import 'typings-global'
 import 'smartq'
 module.exports = (input, done) => {
-    done('hi')
+    done(input)
 }
