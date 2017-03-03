@@ -8,8 +8,16 @@ export declare class Thread {
     constructor(filePathArg: string);
     /**
      * sends a message to the spawned process
+     * spawns it and keeps running
      */
     send<T>(message: any): Promise<T>;
+    /**
+     * sends a command once and then kills the child process
+     */
+    sendOnce<T>(message: any): Promise<T>;
+    /**
+     * kills the thread
+     */
     kill(): void;
     assignToPool(poolArg: Pool): void;
     private checkSpawn();
