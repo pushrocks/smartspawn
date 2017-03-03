@@ -3,5 +3,10 @@
         "testTs": {
             "./test/*.ts": "./test/"
         }
+    },
+    "npmci": {
+        "globalNpmTools": [
+            "npmts"
+        ]
     }
 }
