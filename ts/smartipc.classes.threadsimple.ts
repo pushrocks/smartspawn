@@ -12,7 +12,7 @@ export class ThreadSimple {
   }
 
   run () {
-    let done = smartq.defer()
+    let done = smartq.defer<childProcess.ChildProcess>()
     let forkPath = (() => {
       if (workerBasePath) {
         return plugins.path.join(workerBasePath, this.workerPath)
