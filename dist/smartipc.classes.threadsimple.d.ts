@@ -3,5 +3,5 @@ export declare class ThreadSimple {
     workerPath: string;
     threadChildProcess: childProcess.ChildProcess;
     constructor(filePathArg: string);
-    run(): childProcess.ChildProcess;
+    run(): Promise<{}>;
 }

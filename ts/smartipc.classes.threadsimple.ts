@@ -1,5 +1,5 @@
 import * as plugins from './smartipc.plugins'
-import * as q from 'smartq'
+import * as smartq from 'smartq'
 import * as childProcess from 'child_process'
 
 import { workerBasePath } from './smartipc.classes.thread'
@@ -12,6 +12,7 @@ export class ThreadSimple {
   }
 
   run () {
+    let done = smartq.defer()
     let forkPath = (() => {
       if (workerBasePath) {
         return plugins.path.join(workerBasePath, this.workerPath)
@@ -20,6 +21,7 @@ export class ThreadSimple {
       }
     })()
     this.threadChildProcess = childProcess.fork(forkPath)
-    return this.threadChildProcess
+    done.resolve(this.threadChildProcess)
+    return done.promise
   }
 }
