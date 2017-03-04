@@ -3,10 +3,13 @@ import * as q from 'smartq'
 
 import { Pool } from './smartipc.classes.pool'
 
+export let workerBasePath: string = null
+
 export let setWorkerBasePath = (basePathArg: string) => {
+  workerBasePath = basePathArg
   plugins.threads.config.set({
     basepath: {
-      node: basePathArg
+      node: workerBasePath
     }
   })
 }

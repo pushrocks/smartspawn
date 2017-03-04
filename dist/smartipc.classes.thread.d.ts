@@ -1,4 +1,5 @@
 import { Pool } from './smartipc.classes.pool';
+export declare let workerBasePath: string;
 export declare let setWorkerBasePath: (basePathArg: string) => void;
 export declare class Thread {
     thread: any;
