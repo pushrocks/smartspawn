@@ -7,8 +7,10 @@ import { workerBasePath } from './smartipc.classes.thread'
 export class ThreadSimple {
   workerPath: string
   threadChildProcess: childProcess.ChildProcess
-  constructor (filePathArg: string) {
+  forkOptions: childProcess.ForkOptions
+  constructor (filePathArg: string, forkOptionsArg: childProcess.ForkOptions = {}) {
     this.workerPath = filePathArg
+    this.forkOptions = forkOptionsArg
   }
 
   run () {
@@ -20,7 +22,7 @@ export class ThreadSimple {
         return this.workerPath
       }
     })()
-    this.threadChildProcess = childProcess.fork(forkPath)
+    this.threadChildProcess = childProcess.fork(forkPath, [], this.forkOptions)
     done.resolve(this.threadChildProcess)
     return done.promise
   }

@@ -2,6 +2,7 @@ import * as childProcess from 'child_process';
 export declare class ThreadSimple {
     workerPath: string;
     threadChildProcess: childProcess.ChildProcess;
-    constructor(filePathArg: string);
+    forkOptions: childProcess.ForkOptions;
+    constructor(filePathArg: string, forkOptionsArg?: childProcess.ForkOptions);
     run(): Promise<childProcess.ChildProcess>;
 }
