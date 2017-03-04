@@ -8,9 +8,11 @@ export class ThreadSimple {
   workerPath: string
   threadChildProcess: childProcess.ChildProcess
   forkOptions: childProcess.ForkOptions
-  constructor (filePathArg: string, forkOptionsArg: childProcess.ForkOptions = {}) {
+  argvArgs: string[]
+  constructor (filePathArg: string, argvArgs: string[] = [], forkOptionsArg: childProcess.ForkOptions = {}) {
     this.workerPath = filePathArg
     this.forkOptions = forkOptionsArg
+    this.argvArgs = argvArgs
   }
 
   run () {
@@ -22,7 +24,7 @@ export class ThreadSimple {
         return this.workerPath
       }
     })()
-    this.threadChildProcess = childProcess.fork(forkPath, [], this.forkOptions)
+    this.threadChildProcess = childProcess.fork(forkPath, this.argvArgs, this.forkOptions)
     done.resolve(this.threadChildProcess)
     return done.promise
   }
