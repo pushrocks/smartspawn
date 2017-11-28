@@ -1,54 +1,60 @@
-import 'typings-test'
-import { expect } from 'smartchai'
+import { expect, tap } from 'tapbundle'
 
-import * as smartipc from '../dist/index'
+import * as smartipc from '../ts/index'
 
 let testThreadFunction: smartipc.ThreadFunction
 let testThread: smartipc.Thread
 let testPool: smartipc.Pool
 
-describe('smartipc', function () {
-  it('should create an instance of ThreadFunction', function () {
-    testThreadFunction = new smartipc.ThreadFunction((input, done) => {
-      let url = require('url')
-      done(url.parse(input))
-    })
-    testThreadFunction.send('https://google.com').then(message => {
-      console.log(message)
-      testThreadFunction.kill()
-    })
+/**
+ * create a normal ThreadFunction
+ */
+tap.test('should create an instance of ThreadFunction', async () => {
+  testThreadFunction = new smartipc.ThreadFunction((input, done) => {
+    let url = require('url')
+    done(url.parse(input))
   })
-  it('should create an instance of Thread', function () {
-    smartipc.setWorkerBasePath(__dirname)
-    testThread = new smartipc.Thread('child.js')
-    testThread.send('https://google.com').then(message => {
-      console.log(message)
-      testThread.kill()
-    })
-  })
-
-  it('should not spawn when nothing is sent', function () {
-    smartipc.setWorkerBasePath(__dirname)
-    let testThread = new smartipc.Thread('child.js')
-  })
-
-  it('should run in a Pool', function () {
-    let testPool = new smartipc.Pool()
-    let testThread = new smartipc.Thread('child.js')
-    testThread.assignToPool(testPool)
-    return testThread.send('what').then(message => {
-      console.log(message)
-      return testThread.send('another').then(message => {
-        console.log(message)
-        testThread.assignedPool.pool.killAll()
-      })
-    })
-  })
-
-  it('should once', function () {
-    let testThread = new smartipc.Thread('child.js')
-    return testThread.sendOnce('what').then(message => {
-      expect(message).to.equal('what')
-    })
-  })
+  const message = await testThreadFunction.send('https://google.com')
+  console.log(message)
+  testThreadFunction.kill()
 })
+
+tap.test('should create an instance of Thread', async () => {
+  smartipc.setWorkerBasePath(__dirname)
+  testThread = new smartipc.Thread('child.js')
+  const message = await testThread.send('https://google.com')
+  console.log(message)
+  testThread.kill()
+})
+
+tap.test('should not spawn when nothing is sent', async () => {
+  smartipc.setWorkerBasePath(__dirname)
+  let testThread = new smartipc.Thread('child.js')
+})
+
+tap.test('should run in a Pool', async () => {
+  let testPool = new smartipc.Pool()
+  let testThread = new smartipc.Thread('child.js')
+  testThread.assignToPool(testPool)
+
+  // first run
+  let message = await testThread.send('what')
+  expect(message).to.equal('what')
+  console.log(message)
+
+  // second run
+  message = await testThread.send('another')
+  expect(message).to.equal('another')
+  console.log(message)
+  
+  // kill all
+  testThread.assignedPool.pool.killAll()
+})
+
+tap.test('should once', async () => {
+  let testThread = new smartipc.Thread('child.js')
+  const message = await testThread.sendOnce('what')
+  expect(message).to.equal('what')
+})
+
+tap.start()

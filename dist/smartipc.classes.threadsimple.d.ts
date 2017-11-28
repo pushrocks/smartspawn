@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import * as childProcess from 'child_process';
 export declare class ThreadSimple {
     workerPath: string;
