@@ -1,12 +1,12 @@
 {
-    "npmts": {
-        "testTs": {
-            "./test/*.ts": "./test/"
-        }
-    },
-    "npmci": {
-        "globalNpmTools": [
-            "npmts"
-        ]
+  "npmts": {
+    "testTs": {
+      "./test/*.ts": "./test/"
     }
+  },
+  "npmci": {
+    "npmGlobalTools": [
+      "npmts"
+    ]
+  }
 }
