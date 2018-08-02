@@ -1,11 +1,12 @@
 {
-  "name": "smartipc",
+  "name": "@pushrocks/smartspawn",
   "version": "1.0.11",
   "description": "smart subprocess handling",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "test": "(npmts)"
+    "test": "tsrun test/test.ts",
+    "build": "echo \"Not needed for now\""
   },
   "repository": {
     "type": "git",
@@ -18,13 +19,14 @@
   },
   "homepage": "https://gitlab.com/pushrocks/smartipc#README",
   "dependencies": {
-    "@types/lodash": "^4.14.85",
-    "smartq": "^1.1.6",
-    "spawn-wrap": "^1.4.1",
-    "threads": "^0.8.1",
-    "typings-global": "^1.0.23"
+    "@pushrocks/smartpromise": "^2.0.5",
+    "spawn-wrap": "^1.4.2",
+    "threads": "^0.8.1"
   },
   "devDependencies": {
-    "tapbundle": "^1.1.8"
-  }
+    "@gitzone/tsrun": "^1.1.9",
+    "@pushrocks/tapbundle": "^3.0.1",
+    "@types/node": "^10.5.5"
+  },
+  "private": true
 }
