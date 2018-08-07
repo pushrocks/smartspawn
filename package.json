@@ -1,6 +1,6 @@
 {
   "name": "@pushrocks/smartspawn",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "private": false,
   "description": "smart subprocess handling",
   "main": "dist/index.js",
