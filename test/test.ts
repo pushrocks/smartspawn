@@ -21,7 +21,7 @@ tap.test('should create an instance of ThreadFunction', async () => {
 
 tap.test('should create an instance of Thread', async () => {
   smartspawn.setWorkerBasePath(__dirname);
-  testThread = new smartspawn.Thread('child.ts');
+  testThread = new smartspawn.Thread('../testassets/child.ts');
   testThread.enableTypeScript();
   const message = await testThread.send('https://google.com');
   console.log(message);
@@ -30,12 +30,12 @@ tap.test('should create an instance of Thread', async () => {
 
 tap.test('should not spawn when nothing is sent', async () => {
   smartspawn.setWorkerBasePath(__dirname);
-  let testThread = new smartspawn.Thread('child.ts');
+  let testThread = new smartspawn.Thread('../testassets/child.ts');
 });
 
 tap.test('should run in a Pool', async () => {
   let testPool = new smartspawn.Pool();
-  let testThread = new smartspawn.Thread('child.ts');
+  let testThread = new smartspawn.Thread('../testassets/child.ts');
   testThread.assignToPool(testPool);
 
   // first run
@@ -53,7 +53,7 @@ tap.test('should run in a Pool', async () => {
 });
 
 tap.test('should once', async () => {
-  let testThread = new smartspawn.Thread('child.ts');
+  let testThread = new smartspawn.Thread('../testassets/child.ts');
   const message = await testThread.sendOnce('what');
   expect(message).to.equal('what');
 });
