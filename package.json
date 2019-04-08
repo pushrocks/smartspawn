@@ -20,15 +20,15 @@
   },
   "homepage": "https://gitlab.com/pushrocks/smartipc#README",
   "dependencies": {
-    "@pushrocks/smartpromise": "^2.0.5",
+    "@pushrocks/smartpromise": "^3.0.2",
     "spawn-wrap": "^1.4.2",
-    "threads": "^0.8.1"
+    "threads": "^0.12.1"
   },
   "devDependencies": {
     "@gitzone/tsbuild": "^2.1.8",
-    "@gitzone/tsrun": "^1.1.9",
-    "@gitzone/tstest": "^1.0.12",
-    "@pushrocks/tapbundle": "^3.0.1",
-    "@types/node": "^10.5.5"
+    "@gitzone/tsrun": "^1.2.1",
+    "@gitzone/tstest": "^1.0.18",
+    "@pushrocks/tapbundle": "^3.0.7",
+    "@types/node": "^11.13.0"
   }
 }

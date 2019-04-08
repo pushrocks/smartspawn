@@ -1,6 +1,5 @@
-import 'typings-global';
 import * as plugins from './smartspawn.plugins';
-import * as q from 'smartq';
+import * as smartpromise from '@pushrocks/smartpromise';
 
 export interface IThreadFunction {
   (input, done): void;
@@ -16,7 +15,7 @@ export class ThreadFunction {
    * sends a message to the spawned process
    */
   send<T>(message: any): Promise<T> {
-    let done = q.defer<T>();
+    let done = smartpromise.defer<T>();
     this.thread
       .send(message)
       .on('message', (message: T) => {

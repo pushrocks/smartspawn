@@ -1,6 +1,6 @@
 import * as plugins from './smartspawn.plugins';
 import * as paths from './smartspawn.paths';
-import * as q from 'smartq';
+import * as smartpromise from '@pushrocks/smartpromise';
 
 import { Pool } from './smartspawn.classes.pool';
 import { startSpawnWrap, endSpawnWrap } from './smartspawn.wrap';
@@ -30,7 +30,7 @@ export class Thread {
    * spawns it and keeps running
    */
   send<T>(message: any): Promise<T> {
-    let done = q.defer<T>();
+    let done = smartpromise.defer<T>();
     this._checkSpawn();
     this.thread.send(message);
     this.thread.on('message', (message: T) => {
@@ -49,7 +49,7 @@ export class Thread {
    * sends a command once and then kills the child process
    */
   sendOnce<T>(message): Promise<T> {
-    let done = q.defer<T>();
+    let done = smartpromise.defer<T>();
     this.send<T>(message).then(message => {
       done.resolve(message);
       this.kill();

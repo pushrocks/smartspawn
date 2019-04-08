@@ -1,5 +1,5 @@
 import * as plugins from './smartspawn.plugins';
-import * as smartq from 'smartq';
+import * as smartpromise from '@pushrocks/smartpromise';
 import * as childProcess from 'child_process';
 
 import { workerBasePath } from './smartspawn.classes.thread';
@@ -20,7 +20,7 @@ export class ThreadSimple {
   }
 
   run() {
-    let done = smartq.defer<childProcess.ChildProcess>();
+    let done = smartpromise.defer<childProcess.ChildProcess>();
     let forkPath = (() => {
       if (workerBasePath) {
         return plugins.path.join(workerBasePath, this.workerPath);
