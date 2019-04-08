@@ -69,7 +69,7 @@ export class Thread {
     this.assignedPool = poolArg;
   }
 
-  enableTypeScript () {
+  enableTypeScript() {
     // TODO:
   }
 

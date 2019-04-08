@@ -7,5 +7,15 @@
   "npmci": {
     "npmGlobalTools": [],
     "npmAccessLevel": "public"
+  },
+  "gitzone": {
+    "module": {
+      "githost": "gitlab.com",
+      "gitscope": "pushrocks",
+      "gitrepo": "smartspawn",
+      "shortDescription": "smart subprocess handling",
+      "npmPackagename": "@pushrocks/smartspawn",
+      "license": "MIT"
+    }
   }
 }
