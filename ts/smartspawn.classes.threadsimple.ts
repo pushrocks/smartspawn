@@ -2,13 +2,11 @@ import * as plugins from './smartspawn.plugins';
 import * as smartpromise from '@pushrocks/smartpromise';
 import * as childProcess from 'child_process';
 
-import { workerBasePath } from './smartspawn.classes.thread';
-
 export class ThreadSimple {
-  workerPath: string;
-  threadChildProcess: childProcess.ChildProcess;
-  forkOptions: childProcess.ForkOptions;
-  argvArgs: string[];
+  public workerPath: string;
+  public threadChildProcess: childProcess.ChildProcess;
+  public forkOptions: childProcess.ForkOptions;
+  public argvArgs: string[];
   constructor(
     filePathArg: string,
     argvArgs: string[] = [],
@@ -19,17 +17,13 @@ export class ThreadSimple {
     this.argvArgs = argvArgs;
   }
 
-  run() {
-    let done = smartpromise.defer<childProcess.ChildProcess>();
-    let forkPath = (() => {
-      if (workerBasePath) {
-        return plugins.path.join(workerBasePath, this.workerPath);
-      } else {
-        return this.workerPath;
-      }
-    })();
+  public async start() {
+    const forkPath = this.workerPath;
     this.threadChildProcess = childProcess.fork(forkPath, this.argvArgs, this.forkOptions);
-    done.resolve(this.threadChildProcess);
-    return done.promise;
+    return this.threadChildProcess;
+  }
+
+  public async stop() {
+    this.threadChildProcess.kill();
   }
 }
